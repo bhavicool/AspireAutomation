@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="AspireAppAutomationSuite" duration-ms="18403" started-at="2022-01-24T07:18:19 PST" finished-at="2022-01-24T07:18:37 PST">
+    <groups>
+    </groups>
+    <test name="AspireAppSuccessfulOrder" duration-ms="18403" started-at="2022-01-24T07:18:19 PST" finished-at="2022-01-24T07:18:37 PST">
+      <class name="test.CreateOrderTest">
+        <test-method status="PASS" signature="startReport()[pri:0, instance:test.CreateOrderTest@6c49835d]" name="startReport" is-config="true" duration-ms="139" started-at="2022-01-24T07:18:19 PST" finished-at="2022-01-24T07:18:19 PST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startReport -->
+        <test-method status="PASS" signature="navigateToApplication()[pri:0, instance:test.CreateOrderTest@6c49835d]" name="navigateToApplication" is-config="true" duration-ms="6876" started-at="2022-01-24T07:18:19 PST" finished-at="2022-01-24T07:18:26 PST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateToApplication -->
+        <test-method status="PASS" signature="successfulOrder()[pri:1, instance:test.CreateOrderTest@6c49835d]" name="successfulOrder" duration-ms="10336" started-at="2022-01-24T07:18:26 PST" finished-at="2022-01-24T07:18:36 PST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- successfulOrder -->
+        <test-method status="PASS" signature="quitDriver()[pri:0, instance:test.CreateOrderTest@6c49835d]" name="quitDriver" is-config="true" duration-ms="735" started-at="2022-01-24T07:18:36 PST" finished-at="2022-01-24T07:18:37 PST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitDriver -->
+        <test-method status="PASS" signature="cleanUp()[pri:0, instance:test.CreateOrderTest@6c49835d]" name="cleanUp" is-config="true" duration-ms="279" started-at="2022-01-24T07:18:37 PST" finished-at="2022-01-24T07:18:37 PST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cleanUp -->
+      </class> <!-- test.CreateOrderTest -->
+    </test> <!-- AspireAppSuccessfulOrder -->
+  </suite> <!-- AspireAppAutomationSuite -->
+</testng-results>
