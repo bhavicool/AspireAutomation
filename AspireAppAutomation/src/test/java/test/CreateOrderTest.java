@@ -10,14 +10,17 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.HomePage;
 import pages.InventoryPage;
 import pages.LoginPage;
+import utils.RandomNameGenerator;
 
 public class CreateOrderTest {
 
@@ -28,6 +31,8 @@ public class CreateOrderTest {
     ExtentReports extentReports;
     ExtentTest logger;
     ExtentHtmlReporter extentHtmlReporter;
+    RandomNameGenerator randomNameGenerator;
+    Actions action;
 
     @BeforeTest
     public void startReport() {
@@ -48,6 +53,8 @@ public class CreateOrderTest {
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
         inventoryPage=new InventoryPage(driver);
+        randomNameGenerator=new RandomNameGenerator();
+        action=new Actions(driver);
     }
 
     @Test(priority = 1)
@@ -56,21 +63,37 @@ public class CreateOrderTest {
         ExtentTest logger=extentReports.createTest("Positive Scenario for successful order");
         logger.log(Status.INFO,"Entering Credentials and clicking login");
 
-        loginPage.userNameTxt(driver).sendKeys(getURLDetails("userName"));
-        loginPage.passwordTxt(driver).sendKeys(getURLDetails("passWord"));
-        loginPage.loginBtn(driver).click();
+        try {
+            loginPage.userNameTxt(driver).sendKeys(getURLDetails("userName"));
+            loginPage.passwordTxt(driver).sendKeys(getURLDetails("passWord"));
+            loginPage.loginBtn(driver).click();
 
-        homePage.waitForInventoryLink(driver);
-        homePage.inventoryLink(driver).click();
+            homePage.waitForInventoryLink(driver);
+            homePage.inventoryLink(driver).click();
 
-        inventoryPage.waitForProductsMainLink(driver);
-        inventoryPage.productsMainLnk(driver).click();
-        inventoryPage.productsSubLnk(driver).click();
-        inventoryPage.waitForCreateProduct(driver);
-        inventoryPage.createProduct(driver).click();
+            inventoryPage.waitForProductsMainLink();
+            inventoryPage.productsMainLnk(driver).click();
+            inventoryPage.productsSubLnk(driver).click();
+            inventoryPage.waitForCreateProduct();
+            inventoryPage.createProduct(driver).click();
+            inventoryPage.waitForProductName();
+            inventoryPage.productName(driver).sendKeys(randomNameGenerator.generateRandomProductName());
+            inventoryPage.waitForUnitOfMeasure(driver);
+            action.moveToElement(inventoryPage.unitOfMeasure(driver)).click().perform();
+            inventoryPage.waitForUnitOfMeasureSelect();
+            inventoryPage.unitOfMeasureSelect(driver).click();
+            Thread.sleep(3000);
+            inventoryPage.saveBtn(driver).click();
+            Assert.assertEquals(30, 30);
+            logger.log(Status.PASS, "Samsung mobile count is as expected");
+        }
+        catch(Exception e)
+        {
+            System.out.println("Exception is:"+e.toString());
+            Assert.assertEquals(30, 32);
+            logger.log(Status.ERROR, "An Exception:"+e.toString());
 
-        Assert.assertEquals(30, 30);
-        logger.log(Status.PASS,"Samsung mobile count is as expected");
+        }
 
     }
 
