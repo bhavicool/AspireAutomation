@@ -11,15 +11,15 @@ public class InventoryPage extends Page {
     }
 
     public void waitForProductsMainLink() {
-        waitForElement(By.xpath("//a[contains(text(),'Products')]"));
+        waitForElement(By.xpath("//button[@title='Products']/span[text()='Products']"));
     }
 
     public WebElement productsMainLnk(WebDriver driver) {
-        return (driver.findElement(By.xpath("//a[contains(text(),'Products')]")));
+        return (driver.findElement(By.xpath("//button[@title='Products']/span[text()='Products']")));
     }
 
     public WebElement productsSubLnk(WebDriver driver) {
-        return (driver.findElement(By.xpath("//span[text()='Products']")));
+        return (driver.findElement(By.xpath("//a[text()='Products']")));
     }
 
     public void waitForCreateProduct() {
@@ -39,19 +39,19 @@ public class InventoryPage extends Page {
     }
 
     public void waitForUnitOfMeasure(WebDriver driver) {
-        waitForElementToBeClickable(driver.findElement(By.xpath("//label[text()='Unit of Measure']/parent::td/following-sibling::td/div/div/a")));
+        waitForElementToBeClickable(driver.findElement(By.xpath("//label[text()='Unit of Measure']/parent::td/following-sibling::td/div/div/div/a")));
     }
 
     public WebElement unitOfMeasure(WebDriver driver) {
-        return (driver.findElement(By.xpath("//label[text()='Unit of Measure']/parent::td/following-sibling::td/div/div/a")));
+        return (driver.findElement(By.xpath("//label[text()='Unit of Measure']/parent::td/following-sibling::td/div/div/div/a")));
     }
 
     public void waitForUnitOfMeasureSelect() {
-        waitForElement(By.xpath("//a[text()='L']"));
+        waitForElement(By.xpath("//a[text()='cm']"));
     }
 
     public WebElement unitOfMeasureSelect(WebDriver driver) {
-        return (driver.findElement(By.xpath("//a[text()='L']")));
+        return (driver.findElement(By.xpath("//a[text()='cm']")));
     }
 
     public WebElement updateProductQuantity(WebDriver driver) {
