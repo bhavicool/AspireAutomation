@@ -3,17 +3,14 @@ package test;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
 import java.util.Properties;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
@@ -65,23 +62,27 @@ public class CreateOrderTest {
     public void successfulOrder() throws InterruptedException, IOException {
 
         ExtentTest logger=extentReports.createTest("Positive Scenario for successful order");
-        logger.log(Status.INFO,"Entering Credentials and clicking login");
-
         try {
+            logger.log(Status.INFO,"Entering Credentials and clicking login");
+            //Login Page Operation
             loginPage.userNameTxt(driver).sendKeys(getURLDetails("userName"));
             loginPage.passwordTxt(driver).sendKeys(getURLDetails("passWord"));
             loginPage.loginBtn(driver).click();
 
+            //Home Page Operation
+            logger.log(Status.INFO,"Inventory Page Actions");
             homePage.waitForInventoryLink(driver);
             homePage.inventoryLink(driver).click();
 
+            //Inventory Page Operation
             inventoryPage.waitForProductsMainLink();
             inventoryPage.productsMainLnk(driver).click();
             inventoryPage.productsSubLnk(driver).click();
             inventoryPage.waitForCreateProduct();
             inventoryPage.createProduct(driver).click();
             inventoryPage.waitForProductName();
-            inventoryPage.productName(driver).sendKeys(randomNameGenerator.generateRandomProductName());
+            randomNameGenerator.setProductName("BhaveshAspire");
+            inventoryPage.productName(driver).sendKeys(randomNameGenerator.getProductName());
             inventoryPage.waitForUnitOfMeasure(driver);
             action.moveToElement(inventoryPage.unitOfMeasure(driver)).click().perform();
             inventoryPage.waitForUnitOfMeasureSelect();
@@ -99,14 +100,17 @@ public class CreateOrderTest {
             inventoryPage.selectProductName(driver).click();
             inventoryPage.applicationIcon(driver).click();
 
+            //Home Page Operation
             homePage.waitForManufacturingLink(driver);
             homePage.manufacturingLink(driver).click();
 
+            //Manufacturing Page Operation
+            logger.log(Status.INFO,"Manufacturing Page Actions");
             manufacturingPage.waitForCreateQuantity();
             manufacturingPage.createQuantity(driver).click();
             manufacturingPage.waitForEnterProduct();
             manufacturingPage.enterProduct(driver).click();
-            manufacturingPage.enterProduct(driver).sendKeys(randomNameGenerator.generateRandomProductName());
+            manufacturingPage.enterProduct(driver).sendKeys(randomNameGenerator.getProductName());
             Thread.sleep(2000);
             action.sendKeys(Keys.TAB).build().perform();
             manufacturingPage.confirmOrder(driver).click();
@@ -116,19 +120,21 @@ public class CreateOrderTest {
             manufacturingPage.OkConfirmation(driver).click();
             manufacturingPage.waitForApplyConfirmation();
             manufacturingPage.ApplyConfirmation(driver).click();
+            manufacturingPage.waitForProductName();
+            String doneState=manufacturingPage.doneConfirmationState(driver).getAttribute("aria-checked");
 
-            Thread.sleep(3000);
-            Assert.assertEquals(30, 30);
-            logger.log(Status.PASS, "Samsung mobile count is as expected");
+            //First Assertion to check done state
+            Assert.assertEquals(doneState,"true");
+
+            //Second Assertion to check product name
+            String actualProductName=manufacturingPage.productName(driver).getText();
+            Assert.assertEquals(actualProductName,randomNameGenerator.getProductName());
+            logger.log(Status.PASS, "Manufacturing order is created properly");
         }
         catch(Exception e)
         {
-            System.out.println("Exception is:"+e.toString());
-            Assert.assertEquals(30, 32);
-            logger.log(Status.ERROR, "An Exception:"+e.toString());
-
+            logger.log(Status.ERROR, "An Exception:"+e.toString()+" has been observed");
         }
-
     }
 
     @AfterMethod

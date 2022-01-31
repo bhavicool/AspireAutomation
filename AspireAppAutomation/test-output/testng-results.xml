@@ -2,28 +2,28 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="AspireAppAutomationSuite" duration-ms="51047" started-at="2022-01-31T06:45:10 PST" finished-at="2022-01-31T06:46:01 PST">
+  <suite name="AspireAppAutomationSuite" duration-ms="46705" started-at="2022-01-31T08:36:57 PST" finished-at="2022-01-31T08:37:44 PST">
     <groups>
     </groups>
-    <test name="AspireAppSuccessfulOrder" duration-ms="51047" started-at="2022-01-31T06:45:10 PST" finished-at="2022-01-31T06:46:01 PST">
+    <test name="AspireAppSuccessfulOrder" duration-ms="46705" started-at="2022-01-31T08:36:57 PST" finished-at="2022-01-31T08:37:44 PST">
       <class name="test.CreateOrderTest">
-        <test-method status="PASS" signature="startReport()[pri:0, instance:test.CreateOrderTest@6c49835d]" name="startReport" is-config="true" duration-ms="131" started-at="2022-01-31T06:45:10 PST" finished-at="2022-01-31T06:45:10 PST">
+        <test-method status="PASS" signature="startReport()[pri:0, instance:test.CreateOrderTest@6c49835d]" name="startReport" is-config="true" duration-ms="130" started-at="2022-01-31T08:36:57 PST" finished-at="2022-01-31T08:36:58 PST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startReport -->
-        <test-method status="PASS" signature="navigateToApplication()[pri:0, instance:test.CreateOrderTest@6c49835d]" name="navigateToApplication" is-config="true" duration-ms="9997" started-at="2022-01-31T06:45:10 PST" finished-at="2022-01-31T06:45:20 PST">
+        <test-method status="PASS" signature="navigateToApplication()[pri:0, instance:test.CreateOrderTest@6c49835d]" name="navigateToApplication" is-config="true" duration-ms="7064" started-at="2022-01-31T08:36:58 PST" finished-at="2022-01-31T08:37:05 PST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- navigateToApplication -->
-        <test-method status="PASS" signature="successfulOrder()[pri:1, instance:test.CreateOrderTest@6c49835d]" name="successfulOrder" duration-ms="39828" started-at="2022-01-31T06:45:20 PST" finished-at="2022-01-31T06:46:00 PST">
+        <test-method status="PASS" signature="successfulOrder()[pri:1, instance:test.CreateOrderTest@6c49835d]" name="successfulOrder" duration-ms="38527" started-at="2022-01-31T08:37:05 PST" finished-at="2022-01-31T08:37:43 PST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- successfulOrder -->
-        <test-method status="PASS" signature="quitDriver()[pri:0, instance:test.CreateOrderTest@6c49835d]" name="quitDriver" is-config="true" duration-ms="708" started-at="2022-01-31T06:46:00 PST" finished-at="2022-01-31T06:46:01 PST">
+        <test-method status="PASS" signature="quitDriver()[pri:0, instance:test.CreateOrderTest@6c49835d]" name="quitDriver" is-config="true" duration-ms="694" started-at="2022-01-31T08:37:43 PST" finished-at="2022-01-31T08:37:44 PST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- quitDriver -->
-        <test-method status="PASS" signature="cleanUp()[pri:0, instance:test.CreateOrderTest@6c49835d]" name="cleanUp" is-config="true" duration-ms="347" started-at="2022-01-31T06:46:01 PST" finished-at="2022-01-31T06:46:01 PST">
+        <test-method status="PASS" signature="cleanUp()[pri:0, instance:test.CreateOrderTest@6c49835d]" name="cleanUp" is-config="true" duration-ms="254" started-at="2022-01-31T08:37:44 PST" finished-at="2022-01-31T08:37:44 PST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- cleanUp -->

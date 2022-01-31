@@ -54,4 +54,16 @@ public class ManufacturingPage extends Page {
         return (driver.findElement(By.xpath("//span[text()='Apply']/parent::button")));
     }
 
+    public void waitForProductName() {
+        waitForElement(By.xpath("//label[text()='Product']/parent::td/following-sibling::td/a/span"));
+    }
+
+    public WebElement doneConfirmationState(WebDriver driver) {
+        return (driver.findElement(By.xpath("//button[@title='Current state']")));
+    }
+
+    public WebElement productName(WebDriver driver) {
+        return (driver.findElement(By.xpath("//label[text()='Product']/parent::td/following-sibling::td/a/span")));
+    }
+
 }
