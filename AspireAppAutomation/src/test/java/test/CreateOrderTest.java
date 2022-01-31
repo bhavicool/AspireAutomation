@@ -11,6 +11,7 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,6 +21,7 @@ import org.testng.annotations.*;
 import pages.HomePage;
 import pages.InventoryPage;
 import pages.LoginPage;
+import pages.ManufacturingPage;
 import utils.RandomNameGenerator;
 
 public class CreateOrderTest {
@@ -28,6 +30,7 @@ public class CreateOrderTest {
     HomePage homePage;
     LoginPage loginPage;
     InventoryPage inventoryPage;
+    ManufacturingPage manufacturingPage;
     ExtentReports extentReports;
     ExtentTest logger;
     ExtentHtmlReporter extentHtmlReporter;
@@ -53,6 +56,7 @@ public class CreateOrderTest {
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
         inventoryPage=new InventoryPage(driver);
+        manufacturingPage=new ManufacturingPage(driver);
         randomNameGenerator=new RandomNameGenerator();
         action=new Actions(driver);
     }
@@ -82,8 +86,38 @@ public class CreateOrderTest {
             action.moveToElement(inventoryPage.unitOfMeasure(driver)).click().perform();
             inventoryPage.waitForUnitOfMeasureSelect();
             inventoryPage.unitOfMeasureSelect(driver).click();
-            Thread.sleep(3000);
             inventoryPage.saveBtn(driver).click();
+            Thread.sleep(2000);
+
+            inventoryPage.updateProductQuantity(driver).click();
+            Thread.sleep(2000);
+            inventoryPage.createQuantity(driver).click();
+            inventoryPage.waitForCountedQuantity();
+            inventoryPage.countedQuantity(driver).clear();
+            inventoryPage.countedQuantity(driver).sendKeys("100");
+            action.sendKeys(Keys.TAB).build().perform();
+            inventoryPage.selectProductName(driver).click();
+            inventoryPage.applicationIcon(driver).click();
+
+            homePage.waitForManufacturingLink(driver);
+            homePage.manufacturingLink(driver).click();
+
+            manufacturingPage.waitForCreateQuantity();
+            manufacturingPage.createQuantity(driver).click();
+            manufacturingPage.waitForEnterProduct();
+            manufacturingPage.enterProduct(driver).click();
+            manufacturingPage.enterProduct(driver).sendKeys(randomNameGenerator.generateRandomProductName());
+            Thread.sleep(2000);
+            action.sendKeys(Keys.TAB).build().perform();
+            manufacturingPage.confirmOrder(driver).click();
+            manufacturingPage.waitForMarkAsDone();
+            manufacturingPage.markAsDoneOrder(driver).click();
+            manufacturingPage.waitForOkConfirmation();
+            manufacturingPage.OkConfirmation(driver).click();
+            manufacturingPage.waitForApplyConfirmation();
+            manufacturingPage.ApplyConfirmation(driver).click();
+
+            Thread.sleep(3000);
             Assert.assertEquals(30, 30);
             logger.log(Status.PASS, "Samsung mobile count is as expected");
         }

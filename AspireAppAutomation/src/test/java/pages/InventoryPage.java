@@ -54,8 +54,16 @@ public class InventoryPage extends Page {
         return (driver.findElement(By.xpath("//a[text()='cm']")));
     }
 
+    public void waitForUpdateProductQuantity(WebDriver driver) {
+        waitForElementWithVisibility(driver.findElement(By.xpath("//button[@name='action_update_quantity_on_hand']")));
+    }
+
     public WebElement updateProductQuantity(WebDriver driver) {
-        return (driver.findElement(By.xpath("//span[text()='Update Quantity']")));
+        return (driver.findElement(By.xpath("//button[@name='action_update_quantity_on_hand']")));
+    }
+
+    public void waitForCreateQuantity(WebDriver driver) {
+        waitForElementToBeClickable(driver.findElement(By.xpath("//button[contains(text(),'Create')]")));
     }
 
     public WebElement createQuantity(WebDriver driver) {
@@ -70,12 +78,28 @@ public class InventoryPage extends Page {
         return (driver.findElement(By.xpath("//a[text()='Virtual Locations/HN']")));
     }
 
-    public WebElement onHandQuantity(WebDriver driver) {
+    public void waitForCountedQuantity() {
+        waitForElement(By.xpath("//input[@name='inventory_quantity']"));
+    }
+
+    public WebElement countedQuantity(WebDriver driver) {
         return (driver.findElement(By.xpath("//input[@name='inventory_quantity']")));
+    }
+
+    public void waitForSelectProductName(WebDriver driver) {
+        waitForElementToBeClickable(driver.findElement(By.cssSelector("li.breadcrumb-item.o_back_button")));
+    }
+
+    public WebElement selectProductName(WebDriver driver) {
+        return (driver.findElement(By.cssSelector("li.breadcrumb-item.o_back_button")));
     }
 
     public WebElement saveBtn(WebDriver driver) {
         return (driver.findElement(By.xpath("//button[contains(text(),'Save')]")));
+    }
+
+    public WebElement applicationIcon(WebDriver driver) {
+        return (driver.findElement(By.cssSelector("a.fa.o_menu_toggle.fa-th")));
     }
 
 }
